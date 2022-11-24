@@ -1,25 +1,51 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Root/Contexts/AuthProvider";
 
 const SignUp = () => {
-    const {createUser} = useContext(AuthContext)
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        const form = event.target
-        console.log(form)
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const [accountType, setAccountType] = useState(null);
 
+  const handleChange = (event) => {
+    setAccountType(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const image = event.target.image.files[0]
+    const formData = new FormData()
+    formData.append('image', image)
+    const url = `https://api.imgbb.com/1/upload?key=e8113438b493c08f866834de8b0ebd8e`
+    console.log(url)
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+      })
+      .then(res => res.json())
+      .then(imageData=>{
+
+        // Create new user
         createUser(email, password)
         .then(result =>{
             const user = result.user
             console.log(user)
-            toast.success('User Created Succefully')
+            toast.success(`User Created Successfully`)
         })
-    }
+      })
+     
+
+    // createUser(email, password).then((result) => {
+    //   const user = result.user;
+    //   console.log(user);
+    //   toast.success("User Created Succefully");
+    //   updateUserProfile();
+    // });
+  };
   return (
     <section className="relative py-10 sm:py-16 lg:py-24">
       <div className="relative max-w-lg px-4 mx-auto sm:px-0">
@@ -29,20 +55,38 @@ const SignUp = () => {
               <h2 className="text-3xl font-bold text-gray-900">
                 Create an account
               </h2>
+
               <p className="mt-2 text-base text-gray-600">
+                {" "}
                 Already joined?{" "}
                 <Link
                   to="/signin"
-                  title=""
                   className="text-blue-600 transition-all duration-200 hover:underline hover:text-blue-700"
                 >
-                  Sign in now
+                  {" "}
+                  Sign in now{" "}
                 </Link>
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} method="POST" className="mt-8 text-left">
+            <form
+              onSubmit={handleSubmit}
+              method="POST"
+              className="mt-8 text-left"
+            >
               <div className="space-y-5">
+                <select
+                  onChange={handleChange}
+                  className="select select-bordered w-full"
+                  value={accountType}
+                >
+                  <option disabled selected>
+                    Account Type
+                  </option>
+                  <option value="Saler Account">Saler Account</option>
+                  <option value="Buyer Account">Buyer Account</option>
+                </select>
+
                 <div>
                   <label for="" className="text-base font-medium text-gray-900">
                     {" "}
@@ -86,6 +130,23 @@ const SignUp = () => {
                       name="password"
                       id=""
                       placeholder="Enter your password"
+                      className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="" className="text-base font-medium text-gray-900">
+                    {" "}
+                    Upload Profile Picture{" "}
+                  </label>
+                  <div className="mt-2.5">
+                    <input
+                      type="file"
+                      name="image"
+                      id=""
+                      accept="image/*"
+                      placeholder="Enter your full name"
                       className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
                     />
                   </div>
