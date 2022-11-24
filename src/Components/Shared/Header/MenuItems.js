@@ -18,7 +18,7 @@ const MenuItems = () => {
                     <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                   </svg>
                 </Link>
-                <ul className="p-2">
+                <ul className="p-2 z-30 bg-white">
                   <li><Link to='/wireless-projectors'>3Wireless Projectors</Link></li>
                   <li><Link to='/led-projectors'>Led Projectors</Link></li>
                   <li><Link to='/full-hd-projectors'>Full Hd Projectors</Link></li>

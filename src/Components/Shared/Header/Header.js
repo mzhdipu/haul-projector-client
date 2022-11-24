@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import MenuItems from "./MenuItems";
 
 const Header = () => {
   return (
-    <header className="contianer">
-      <div className="navbar bg-base-100">
+    <header className="shadow-sm">
+      <div className="section-container navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -43,8 +44,9 @@ const Header = () => {
 
 
         <div className="navbar-end">
-          <a className="btn">Get started</a>
+          <Link to='/signup' className="btn">Login </Link>
         </div>
+
       </div>
     </header>
   );

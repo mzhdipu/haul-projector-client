@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import Signin from "../../Pages/Authentication/Signin/Signin";
+import SignUp from "../../Pages/Authentication/SignUp/SignUp";
 import Faq from "../../Pages/Faq/Faq";
 import FullHdProjectors from "../../Pages/FullHdProjectors/FullHdProjectors";
 import Home from "../../Pages/Home/Home";
@@ -35,6 +37,14 @@ export const routes = createBrowserRouter([
             {
                 path: "/wireless-projectors",
                 element : <WirelessProjectors></WirelessProjectors>
+            },
+            {
+                path: "/signup",
+                element : <SignUp></SignUp>
+            },
+            {
+                path: "/signin",
+                element : <Signin></Signin>
             },
         ]
     },
