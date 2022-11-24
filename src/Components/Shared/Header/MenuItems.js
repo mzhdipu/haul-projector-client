@@ -25,6 +25,7 @@ const MenuItems = () => {
                 </ul>
               </li>
 
+              <li><Link to='/add-products'>Add Products</Link></li>
               <li><Link to='/faq'>FAQ</Link></li>
         </>
     );

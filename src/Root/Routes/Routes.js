@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddProducts from "../../Pages/AddProducts/AddProducts";
 import Signin from "../../Pages/Authentication/Signin/Signin";
 import SignUp from "../../Pages/Authentication/SignUp/SignUp";
 import Faq from "../../Pages/Faq/Faq";
@@ -25,6 +26,10 @@ export const routes = createBrowserRouter([
             {
                 path: "/faq",
                 element : <Faq></Faq>
+            },
+            {
+                path: "/add-products",
+                element : <AddProducts></AddProducts>
             },
             {
                 path: "/full-hd-projectors",
