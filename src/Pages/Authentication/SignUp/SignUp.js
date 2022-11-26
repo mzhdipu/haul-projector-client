@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Root/Contexts/AuthProvider";
-import { FaFacebook, FaGoogle } from 'react-icons/fa';
+import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from "firebase/auth";
 
 const SignUp = () => {
@@ -36,7 +36,6 @@ const SignUp = () => {
         accountType,
         name,
         email,
-        password,
         pic
       }
         // Create new user
@@ -66,7 +65,40 @@ const SignUp = () => {
   const handleGoogle = () =>{
     const googleProvider = new GoogleAuthProvider()
     signInWithGoogle(googleProvider)
+    .then((result)=>{
+      // console.log(result.user?.displayName)
+      const userGoogle = result.user
+      const displayName = userGoogle?.displayName
+      const email = userGoogle?.email
+      const photoURL = userGoogle?.photoURL
+
+      const userSigninGoogleInfo = {
+        displayName,
+        email,
+        photoURL
+      }
+      
+      
+       // POST FORM DATA
+       fetch(`http://localhost:5000/users`,{
+        method:'POST',
+          headers:{
+            'content-type': 'application/json'
+          },
+          body:JSON.stringify(userSigninGoogleInfo)
+      })
+      .then(res=> res.json())
+      .then(data => {
+        toast.success('Save user info in Database')
+      })
+
+
+     }).catch((error)=>{
+      console.log(error);
+    })
   }
+
+
   return (
     <section className="relative py-10 sm:py-16 lg:py-24">
       <div className="relative max-w-lg px-4 mx-auto sm:px-0">
@@ -241,7 +273,7 @@ const SignUp = () => {
                                 "
                   >
                     <div className="absolute inset-y-0 left-0 p-4">
-                      <FaFacebook/>
+                      <FaGithub/>
                     </div>
                     Sign up with Facebook
                   </button>
