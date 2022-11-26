@@ -1,8 +1,10 @@
 import React from "react";
+import toast from "react-hot-toast";
 import SectionTitle from "../../Components/Shared/SectionTitle/SectionTitle";
 
 const AddProducts = () => {
-  const handleSubmit = (event) => {
+    
+    const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const productName = form.productName.value;
@@ -39,8 +41,20 @@ const AddProducts = () => {
           condition,
           yearOfPurchase,
         };
-        
-        
+
+        fetch(`${process.env.REACT_APP_server}/products`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(addProductDB),
+        })
+          .then((res) => res.json())
+          .then((data) =>
+            toast.success('Product Added Successfully')
+          );
+
+          form.reset()
       });
   };
   return (

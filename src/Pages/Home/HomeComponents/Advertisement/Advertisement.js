@@ -8,7 +8,7 @@ const Advertisement = () => {
   const [adsProducts, setAdsProducts] = useState([]);
 
   useEffect(()=>{
-    fetch(`http://localhost:5000/products`)
+    fetch(`${process.env.REACT_APP_server}/products`) 
       .then(res => res.json())
       .then(data => setAdsProducts(data))
   }, [])

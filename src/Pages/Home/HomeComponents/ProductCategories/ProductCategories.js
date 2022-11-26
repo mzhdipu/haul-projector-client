@@ -31,7 +31,7 @@ const ProductCategories = () => {
                     
                     <span className="menu bg-base-100 w-56">
                         {
-                            categoryOnlyData.map((categoryOnlyCat, i) => <Link key={categoryOnlyCat.i}>{categoryOnlyCat}</Link>)
+                            // categoryOnlyData.map((categoryOnlyCat, i) => <Link key={categoryOnlyCat.i}>{categoryOnlyCat}</Link>)
                         }
                     </span>
                 </div>
