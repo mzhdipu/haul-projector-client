@@ -42,11 +42,6 @@ const Header = () => {
           </ul>
         </div>
 
-
-        <div className="navbar-end">
-          <Link to='/signup' className="btn">Login </Link>
-        </div>
-
       </div>
     </header>
   );
