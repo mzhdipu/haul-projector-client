@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import SectionTitle from '../../../../Components/Shared/SectionTitle/SectionTitle';
 import './ProductCategories.css'
 
 const ProductCategories = () => {
+    const [products, setProducts] = useState([])
+    
+    useEffect(()=>{
+        fetch(`http://localhost:5000/products`)
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    },[])
+
+    const getCategoryData = (products, category) =>{
+        let productsCat = products.map(product => {
+            return product[category]
+        })
+
+        productsCat = ["All", ...new Set(productsCat)]
+        return productsCat
+        
+    }
+    const categoryOnlyData = getCategoryData(products, "category")
     return (
         <div className='section-container'>
            <SectionTitle>All Products</SectionTitle>
 
            <div className='flex'>
                 <div className="category-menu w-1/4">
-                    <ul className="menu bg-base-100 w-56">
-                        <li><a>Item 1</a></li>
-                        <li><a>Item 2</a></li>
-                        <li><a>Item 3</a></li>
-                    </ul>
+                    
+                    <span className="menu bg-base-100 w-56">
+                        {
+                            categoryOnlyData.map((categoryOnlyCat, i) => <Link key={categoryOnlyCat.i}>{categoryOnlyCat}</Link>)
+                        }
+                    </span>
                 </div>
 
                 <div className='w-3/4'>

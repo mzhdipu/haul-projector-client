@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Root/Contexts/AuthProvider";
+import { FaFacebook, FaGoogle } from 'react-icons/fa';
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -28,23 +29,36 @@ const SignUp = () => {
       })
       .then(res => res.json())
       .then(imageData=>{
+      const pic = imageData.data.display_url 
 
+      const accountInfo = {
+        name,
+        email,
+        password,
+        pic
+      }
         // Create new user
         createUser(email, password)
         .then(result =>{
             const user = result.user
-            console.log(user)
+            
+            // POST FORM DATA
+            fetch(`http://localhost:5000/users`,{
+              method:'POST',
+                headers:{
+                  'content-type': 'application/json'
+                },
+                body:JSON.stringify(accountInfo)
+            })
+            .then(res=> res.json())
+            .then(data => {
+              toast.success('Save user info in Database')
+            })
+          
             toast.success(`User Created Successfully`)
         })
       })
      
-
-    // createUser(email, password).then((result) => {
-    //   const user = result.user;
-    //   console.log(user);
-    //   toast.success("User Created Succefully");
-    //   updateUserProfile();
-    // });
   };
   return (
     <section className="relative py-10 sm:py-16 lg:py-24">
@@ -83,6 +97,7 @@ const SignUp = () => {
                   <option disabled selected>
                     Account Type
                   </option>
+                  <option value="Saler Account" selected>User</option>
                   <option value="Saler Account">Saler Account</option>
                   <option value="Buyer Account">Buyer Account</option>
                 </select>
@@ -187,16 +202,40 @@ const SignUp = () => {
                                 "
                   >
                     <div className="absolute inset-y-0 left-0 p-4">
-                      <svg
-                        className="w-6 h-6 text-blue-600"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
-                      </svg>
+                      <FaGoogle/>
                     </div>
                     Sign up with Google
+                  </button>
+
+                  <button
+                    type="button"
+                    className="
+                                    relative
+                                    inline-flex
+                                    items-center
+                                    justify-center
+                                    w-full
+                                    px-4
+                                    py-4
+                                    mt-2
+                                    text-base
+                                    font-semibold
+                                    text-gray-700
+                                    transition-all
+                                    duration-200
+                                    bg-white
+                                    border-2 border-gray-200
+                                    rounded-md
+                                    hover:bg-gray-100
+                                    focus:bg-gray-100
+                                    hover:text-black
+                                    focus:text-black focus:outline-none
+                                "
+                  >
+                    <div className="absolute inset-y-0 left-0 p-4">
+                      <FaFacebook/>
+                    </div>
+                    Sign up with Facebook
                   </button>
                 </div>
               </div>
