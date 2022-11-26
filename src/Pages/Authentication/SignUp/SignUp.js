@@ -3,9 +3,10 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Root/Contexts/AuthProvider";
 import { FaFacebook, FaGoogle } from 'react-icons/fa';
+import { GoogleAuthProvider } from "firebase/auth";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
   const [accountType, setAccountType] = useState(null);
 
   const handleChange = (event) => {
@@ -32,6 +33,7 @@ const SignUp = () => {
       const pic = imageData.data.display_url 
 
       const accountInfo = {
+        accountType,
         name,
         email,
         password,
@@ -60,6 +62,11 @@ const SignUp = () => {
       })
      
   };
+
+  const handleGoogle = () =>{
+    const googleProvider = new GoogleAuthProvider()
+    signInWithGoogle(googleProvider)
+  }
   return (
     <section className="relative py-10 sm:py-16 lg:py-24">
       <div className="relative max-w-lg px-4 mx-auto sm:px-0">
@@ -178,6 +185,7 @@ const SignUp = () => {
 
                 <div>
                   <button
+                    onClick={handleGoogle}
                     type="button"
                     className="
                                     relative
