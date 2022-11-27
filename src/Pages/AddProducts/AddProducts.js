@@ -9,6 +9,7 @@ const AddProducts = () => {
     const form = event.target;
     const productName = form.productName.value;
     const description = form.description.value;
+    const category = form.category.value;
     const resalePrice = form.resalePrice.value;
     const originalPrice = form.originalPrice.value;
     const yearOfUse = form.yearOfUse.value;
@@ -33,6 +34,7 @@ const AddProducts = () => {
           pic,
           productName,
           description,
+          category,
           resalePrice,
           originalPrice,
           yearOfUse,
@@ -85,6 +87,12 @@ const AddProducts = () => {
             rows="10"
             className="input input-bordered w-full m-2"
           ></textarea>
+          <input
+            name="category"
+            type="text"
+            placeholder="category"
+            className="input input-bordered w-full m-2"
+          />
           <input
             name="resalePrice"
             type="text"

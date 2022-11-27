@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import useTitle from '../../Hooks/useTitle';
 import About from '../About/About';
 import Advertisement from './HomeComponents/Advertisement/Advertisement';
+import AllProducts from './HomeComponents/AllProducts/AllProducts';
 import Banner from './HomeComponents/Banner/Banner';
-import ProductCategories from './HomeComponents/ProductCategories/ProductCategories';
 
 const Home = () => {
     const [loading, setLoading] = useState(true)
@@ -15,7 +15,7 @@ const Home = () => {
             <Banner></Banner>
             <About></About>
             <Advertisement></Advertisement>
-            <ProductCategories></ProductCategories>
+            <AllProducts></AllProducts>
         </div>
     );
 };
