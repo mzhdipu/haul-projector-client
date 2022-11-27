@@ -33,7 +33,7 @@ const Header = () => {
             </ul>
           </div>
 
-          <a className="btn btn-ghost normal-case text-xl">Haul Projector</a>
+          <a className="font-bold normal-case text-xl"><Link to="/">Haul Projector</Link></a>
         </div>
 
         <div className="navbar-center hidden lg:flex">

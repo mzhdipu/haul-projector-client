@@ -7,7 +7,7 @@ const LedProjectors = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_server}/products`)
+    fetch(`${process.env.REACT_APP_server}/led-projectors`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

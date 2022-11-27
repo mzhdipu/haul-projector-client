@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import SectionTitle from "../../Components/Shared/SectionTitle/SectionTitle";
 
 const AddProducts = () => {
+  const [category, setCategory] = useState(null);
+
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
     
     const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const productName = form.productName.value;
     const description = form.description.value;
-    const category = form.category.value;
     const resalePrice = form.resalePrice.value;
     const originalPrice = form.originalPrice.value;
     const yearOfUse = form.yearOfUse.value;
@@ -59,6 +63,7 @@ const AddProducts = () => {
           form.reset()
       });
   };
+ 
   return (
     <div className="section-container">
       <SectionTitle>Add Products</SectionTitle>
@@ -87,12 +92,18 @@ const AddProducts = () => {
             rows="10"
             className="input input-bordered w-full m-2"
           ></textarea>
-          <input
-            name="category"
-            type="text"
-            placeholder="category"
-            className="input input-bordered w-full m-2"
-          />
+          <select
+                  onChange={handleChange}
+                  className="select select-bordered w-full"
+                  value={category}
+                >
+                  <option disabled selected>
+                    Select Category
+                  </option>
+                  <option value="3D Wireless Projectors">3D Wireless Projectors</option>
+                  <option value="LED Projectors">LED Projectors</option>
+                  <option value="Full HD Projectors">Full HD Projectors</option>
+                </select>
           <input
             name="resalePrice"
             type="text"

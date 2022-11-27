@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionTitle from "../../../../Components/Shared/SectionTitle/SectionTitle";
 import Card from "./Components/Card/Card";
+import Modal from "./Components/Card/Modal";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -21,6 +22,8 @@ const AllProducts = () => {
                 products.map(product => <Card key={product._id} product = {product}></Card>)
             }
       </div>
+      
+      <Modal></Modal>
     </div>
   );
 };

@@ -5,7 +5,7 @@ const AdsItems = ({ adsProduct }) => {
   const {
     _id,
     category,
-    title,
+    name,
     description,
     pic,
     sellerName,
@@ -19,11 +19,11 @@ const AdsItems = ({ adsProduct }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
-        <img src={pic} alt={title} />
+        <img src={pic} alt={name} />
       </figure>
 
       <div className="card-body">
-        <h2 className="card-title">{title}</h2>
+        <h2 className="card-title">{name}</h2>
         <p>
           {description.length > 10
             ? description.slice(0, 50)

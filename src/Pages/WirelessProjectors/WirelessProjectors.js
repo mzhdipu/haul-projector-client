@@ -6,10 +6,11 @@ import "./WirelessProjectors.css";
 const WirelessProjectors = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_server}/products`)
+    fetch(`${process.env.REACT_APP_server}/wireless-projectors`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+  
   return (
     <div className="section-container">
       <SectionTitle>Wireless Projectors</SectionTitle>

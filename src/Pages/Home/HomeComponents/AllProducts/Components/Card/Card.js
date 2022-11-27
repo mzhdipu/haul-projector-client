@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = ({ product }) => {
   const {
     _id,
     category,
-    title,
+    name,
     description,
     pic,
     sellerName,
@@ -21,16 +22,17 @@ const Card = ({ product }) => {
         <img src={pic} alt="Shoes" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{title}</h2>
+        <h2 className="card-title">{name}</h2>
         
         <p>
           {description.length > 10
             ? description.slice(0, 50)
             : description.length}
         </p>
-        
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+
+        <div className="card-actions justify-center">
+          <button className="btn btn-primary"><Link to={`/product/${product._id}`}>Read More</Link></button>
+          <label htmlFor="my-modal-3" className="btn btn-primary">Buy Now</label>
         </div>
       </div>
     </div>
