@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Root/Contexts/AuthProvider";
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from "firebase/auth";
@@ -8,6 +8,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 const SignUp = () => {
   const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
   const [accountType, setAccountType] = useState(null);
+  const navigate = useNavigate()
 
   const handleChange = (event) => {
     setAccountType(event.target.value);
@@ -53,14 +54,26 @@ const SignUp = () => {
             })
             .then(res=> res.json())
             .then(data => {
+              getUserToken(email)
               toast.success('Save user info in Database')
             })
-          
             toast.success(`User Created Successfully`)
         })
       })
      
   };
+
+  const getUserToken = (email) =>{
+    fetch(`${process.env.JWT_TOKEN_VERYFIY}=${email}`)
+      .then(res => res.json())
+      .then(data =>{ 
+        console.log(data)
+        // if(data.accessToken){
+        //   localStorage.setItem('accessToken', data.accessToken)
+        //   navigate('/')
+        // }
+      })
+  }
 
   const handleGoogle = () =>{
     const googleProvider = new GoogleAuthProvider()
@@ -136,7 +149,7 @@ const SignUp = () => {
                   <option disabled selected>
                     Account Type
                   </option>
-                  <option value="Saler Account" selected>User</option>
+                  <option value="Saler Account" >User</option>
                   <option value="Saler Account">Saler Account</option>
                   <option value="Buyer Account">Buyer Account</option>
                 </select>

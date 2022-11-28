@@ -1,6 +1,7 @@
 import BannerImage from "../../../../Asset/Banner/banner.png";
 import React from "react";
 import "./Banner.css";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -16,9 +17,7 @@ const Banner = () => {
     <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center md:w-2/3 lg:w-1/2 xl:w-1/3 md:text-left">
             <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">Resell your used Projectors</h2>
-            <p className="mt-4 text-base text-gray-200">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam.</p>
-
-            <button className="btn btn-primary mt-5">Get Started</button>
+            <p className="mt-4 text-base text-gray-200">Please Contact us if you are not clear which projector is suitable for you or looking for the best price offer</p>
         </div>
     </div>
 </section>

@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FiEye } from 'react-icons/fi';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+
 
 const Card = ({ product }) => {
+  console.log(product)
   const {
     _id,
     category,
-    name,
+    productName,
     description,
     pic,
     sellerName,
@@ -21,8 +25,8 @@ const Card = ({ product }) => {
       <figure>
         <img src={pic} alt="Shoes" />
       </figure>
-      <div className="card-body">
-        <h2 className="card-title">{name}</h2>
+      <div className="card-body text-left">
+        <h2 className="card-title">{productName}</h2>
         
         <p>
           {description.length > 10
@@ -30,9 +34,9 @@ const Card = ({ product }) => {
             : description.length}
         </p>
 
-        <div className="card-actions justify-center">
-          <button className="btn btn-primary"><Link to={`/product/${product._id}`}>Read More</Link></button>
-          <label htmlFor="my-modal-3" className="btn btn-primary">Buy Now</label>
+        <div className="card-actions justify-between w-1/2 m-auto">
+          <button className="btn btn-primary"><Link to={`/product/${product._id}`}><FiEye/></Link></button>
+          <label htmlFor="my-modal-3" className="btn btn-primary"><AiOutlineShoppingCart/></label>
         </div>
       </div>
     </div>
