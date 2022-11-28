@@ -67,7 +67,10 @@ export const routes = createBrowserRouter([
     children : [
         {
             path: '/dashboard/allusers',
-            element : <Allusers></Allusers>
+            element : <Allusers></Allusers>,
+            loader: ()=>{
+                return fetch(`${process.env.REACT_APP_server}/users`)
+            }
         },
         {
             path: '/dashboard/allbuyers',
