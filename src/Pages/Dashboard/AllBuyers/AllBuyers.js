@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import useTitle from '../../../Hooks/useTitle';
 import Users from '../Allusers/Users';
 
 const AllBuyers = () => {
@@ -9,6 +10,8 @@ const AllBuyers = () => {
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);
+
+  useTitle('All Buyers')
 
   return (
     <div className="mt-5">

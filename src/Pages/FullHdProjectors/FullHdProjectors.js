@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import SectionTitle from "../../Components/Shared/SectionTitle/SectionTitle";
+import useTitle from "../../Hooks/useTitle";
 import Card from "../Home/HomeComponents/AllProducts/Components/Card/Card";
 import "./FullHdProjectors.css";
 
 const FullHdProjectors = () => {
+  useTitle('Full Hd Projectors')
+  
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch(`${process.env.REACT_APP_server}/full-hd-projectors`)

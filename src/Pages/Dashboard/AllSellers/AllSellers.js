@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import useTitle from '../../../Hooks/useTitle';
 import Users from '../Allusers/Users';
 
 const AllSellers = () => {
@@ -9,7 +10,7 @@ const AllSellers = () => {
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);
-
+  useTitle('All Sellers')
   return (
     <div className="mt-5">
       <div className="overflow-x-auto">

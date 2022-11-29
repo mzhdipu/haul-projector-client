@@ -1,7 +1,9 @@
 import React from "react";
+import useTitle from "../../Hooks/useTitle";
 import "./Faq.css";
 
 const Faq = () => {
+  useTitle('Faq')
   return (
     <div className="w-2/3 m-auto my-40">
       <div

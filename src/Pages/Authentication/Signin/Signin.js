@@ -1,8 +1,10 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useTitle from "../../../Hooks/useTitle";
+import useToken from "../../../Hooks/useToken";
 import { AuthContext } from "../../../Root/Contexts/AuthProvider";
 
 const Signin = () => {
@@ -10,7 +12,14 @@ const Signin = () => {
     const googleProvider = new GoogleAuthProvider()
     const navigate = useNavigate();
     const location = useLocation(); 
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
     const from = location.state?.from?.pathname || '/'
+    useTitle('Signin')
+
+    if (token) {
+      navigate(from, { replace: true });
+  }
 
     const handleGoogle = () =>{
       signInWithGoogle(googleProvider)
@@ -34,6 +43,7 @@ const Signin = () => {
             console.log(user);
             form.reset();
             form.reset();
+            setLoginUserEmail(email);
             toast.success('Login Successfully')
           })
           .catch(e => {

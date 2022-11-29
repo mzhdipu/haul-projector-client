@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../../Hooks/useTitle";
 import { AuthContext } from "../../../Root/Contexts/AuthProvider";
 
 const Users = ({ user, i }) => {
-    
+  useTitle('All users')
     return (
     <>
       <tr>

@@ -4,11 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Root/Contexts/AuthProvider";
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from "firebase/auth";
+import useToken from "../../../Hooks/useToken";
+import useTitle from "../../../Hooks/useTitle";
 
 const SignUp = () => {
   const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
   const [accountType, setAccountType] = useState(null);
   const navigate = useNavigate()
+  const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail);
+    useTitle('Signup')
 
   const handleChange = (event) => {
     setAccountType(event.target.value);
@@ -53,7 +58,7 @@ const SignUp = () => {
             })
             .then(res=> res.json())
             .then(data => {
-              getUserToken(email)
+              setCreatedUserEmail(email);
               toast.success('Save user info in Database')
             })
             toast.success(`User Created Successfully`)
@@ -62,18 +67,6 @@ const SignUp = () => {
      
   };
 
-  const getUserToken = (email) =>{
-    fetch(`http://localhost:5000/jwt?email=${email}`)
-      .then(res => res.json())
-      .then(data =>{ 
-        if(data.accessToken){ 
-          localStorage.setItem('accessToken', data.accessToken)
-          navigate('/')
-        } 
-      })
-
-    console.log(email)
-  }
 
   const handleGoogle = () =>{
     const googleProvider = new GoogleAuthProvider()

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import SectionTitle from "../../Components/Shared/SectionTitle/SectionTitle";
+import useTitle from "../../Hooks/useTitle";
 
 const AddProducts = () => {
   const [category, setCategory] = useState(null);
+  useTitle('Add Products')
+
 
   const handleChange = (event) => {
     setCategory(event.target.value);

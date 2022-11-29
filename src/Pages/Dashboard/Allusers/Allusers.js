@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
+import useTitle from "../../../Hooks/useTitle";
 import Users from "./Users";
 // import { useLoaderData } from "react-router-dom";
 
 const Allusers = () => {
     
   const [users, setUser] = useState([]);
+  useTitle('All Users')
+  
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_server}/users`)
+    fetch(`${process.env.REACT_APP_server}/users`,{
+      headers : {
+        authorization : `bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);
+
+  
 
   return (
     <div className="mt-5">
