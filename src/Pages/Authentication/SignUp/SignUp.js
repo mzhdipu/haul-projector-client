@@ -24,7 +24,6 @@ const SignUp = () => {
     const formData = new FormData()
     formData.append('image', image)
     const url = `${process.env.REACT_APP_IMGBB}`; 
-    console.log(url)
     fetch(url, {
         method: 'POST',
         body: formData,
@@ -64,15 +63,16 @@ const SignUp = () => {
   };
 
   const getUserToken = (email) =>{
-    fetch(`${process.env.JWT_TOKEN_VERYFIY}=${email}`)
+    fetch(`http://localhost:5000/jwt?email=${email}`)
       .then(res => res.json())
       .then(data =>{ 
-        console.log(data)
-        // if(data.accessToken){
-        //   localStorage.setItem('accessToken', data.accessToken)
-        //   navigate('/')
-        // }
+        if(data.accessToken){ 
+          localStorage.setItem('accessToken', data.accessToken)
+          navigate('/')
+        } 
       })
+
+    console.log(email)
   }
 
   const handleGoogle = () =>{
