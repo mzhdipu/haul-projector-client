@@ -1,3 +1,7 @@
+http://localhost:3000/dashboard
+adminEmail: mzhdipu@gmail.com
+adminPassword: 222333
+
 Project Name : Haul Projector
 Short Project Description: Its a Small Resals Marketplace anyone can sell or buy theier uesed projector form anywhere
 

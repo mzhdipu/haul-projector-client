@@ -49,7 +49,7 @@ const SignUp = () => {
             const user = result.user
             
             // POST FORM DATA
-            fetch(`http://localhost:5000/users`,{
+            fetch(`https://halu-projector.vercel.app/users`,{
               method:'POST',
                 headers:{
                   'content-type': 'application/json'
@@ -86,7 +86,7 @@ const SignUp = () => {
       
       
        // POST FORM DATA
-       fetch(`http://localhost:5000/users`,{
+       fetch(`https://halu-projector.vercel.app/users`,{
         method:'POST',
           headers:{
             'content-type': 'application/json'

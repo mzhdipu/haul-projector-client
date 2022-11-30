@@ -6,7 +6,7 @@ import "./WirelessProjectors.css";
 const WirelessProjectors = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_server}/wireless-projectors`)
+    fetch(`${process.env.REACT_APP_server}wireless-projectors`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

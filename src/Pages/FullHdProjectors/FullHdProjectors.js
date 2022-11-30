@@ -9,7 +9,7 @@ const FullHdProjectors = () => {
   
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_server}/full-hd-projectors`)
+    fetch(`${process.env.REACT_APP_server}full-hd-projectors`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
