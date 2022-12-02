@@ -55,6 +55,10 @@ const MenuItems = () => {
           </li>
 
           <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+
+          <li>
             {user?.photoURL ? (
               <img
                 src={user?.photoURL}

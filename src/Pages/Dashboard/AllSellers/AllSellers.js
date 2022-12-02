@@ -6,7 +6,7 @@ const AllSellers = () => {
       
   const [users, setUser] = useState([]);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_server}/seller-account`)
+    fetch(`${process.env.REACT_APP_server}seller-account`)
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);

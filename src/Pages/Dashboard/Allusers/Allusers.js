@@ -9,7 +9,7 @@ const Allusers = () => {
   useTitle('All Users')
   
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_server}/users`,{
+    fetch(`${process.env.REACT_APP_server}users`,{
       headers : {
         authorization : `bearer ${localStorage.getItem('accessToken')}`
       }

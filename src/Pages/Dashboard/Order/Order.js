@@ -5,7 +5,7 @@ const Order = () => {
     useTitle('Orders')
     return (
         <div>
-            <h1>re</h1>
+            <h1>This is Order Page</h1>
         </div>
     );
 };
