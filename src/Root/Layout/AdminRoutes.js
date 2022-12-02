@@ -27,6 +27,9 @@ const AdminRoutes = () => {
                 <Link to="/dashboard/allseller">All Seller</Link>
               </li>
               <li>
+                <Link to="/dashboard/products">Products</Link>
+              </li>
+              <li>
                 <Link to="/dashboard/order">Orders</Link>
               </li>
               <li>
